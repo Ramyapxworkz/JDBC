@@ -1,6 +1,6 @@
 package com.xworkz.books.constants;
 
-public enum ConstantBooks {
+public enum ConstantData {
    URL("jdbc:mysql://localhost:3306/Books"),USERNAME("root"),PASSWORD("Xworkzodc@123");
 	private String value;
 	
@@ -9,7 +9,7 @@ public enum ConstantBooks {
 		return value;
 	}
 
-	private ConstantBooks(String value) {
+	private ConstantData(String value) {
 		this.value = value;
 	}
 	
