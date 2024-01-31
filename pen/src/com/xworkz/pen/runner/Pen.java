@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.xworkz.pen.constants.ConstantsPen;
+import com.xworkz.pen.constants.ConstantsData;
 
-public class PenRunner {
+public class Pen {
 	public static void main(String[] args) {
-		try(Connection connection=DriverManager.getConnection(ConstantsPen.URL.getValue(), ConstantsPen.USERNAME.getValue(), ConstantsPen.PASSWORD.getValue());
+		try(Connection connection=DriverManager.getConnection(ConstantsData.URL.getValue(), ConstantsData.USERNAME.getValue(), ConstantsData.PASSWORD.getValue());
 				Statement statement=connection.createStatement()){
 			String query="INSERT INTO pen1_details(brand,color,ink_type)values('Pilot', 'Blue', 'Gel'),"
 					+ "('Bic', 'Black', 'Ballpoint'),('PaperMate', 'Red', 'Rollerball'),('Uni-ball', 'Green', 'Fountain'),('Sharpie', 'Purple', 'Permanent'),('Zebra', 'Orange', 'Gel'),('Montblanc', 'Black', 'Fountain'),"
@@ -28,3 +28,4 @@ public class PenRunner {
 	}
 
 }
+
