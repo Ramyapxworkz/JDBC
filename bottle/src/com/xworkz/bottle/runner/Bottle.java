@@ -5,11 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.xworkz.bottle.constants.ConstantBottle;
+import com.xworkz.bottle.constants.ConstantData;
 
-public class BottleRunner {
+public class Bottle {
 	public static void main(String[] args) {
-		try(Connection connection=DriverManager.getConnection(ConstantBottle.URL.getValue(), ConstantBottle.USERNAME.getValue(), ConstantBottle.PASSWORD.getValue());
+		try(Connection connection=DriverManager.getConnection(ConstantData.URL.getValue(), ConstantData.USERNAME.getValue(), ConstantData.PASSWORD.getValue());
 				Statement statement=connection.createStatement()){
 			System.out.println("class is connected");
 			String query="INSERT INTO bottle_details values('Pepsi','Plastic',750)";
@@ -30,3 +30,8 @@ public class BottleRunner {
 	}
 
 }
+
+
+
+
+
