@@ -1,7 +1,7 @@
-package com.xworkz.country.constants;
+package com.xworkz.charges.constants;
 
 public enum ConnectionData {
-	URL("jdbc:mysql://localhost:3306/country_table"),USERNAME("root"),PASSWORD("Xworkzodc@123");
+	URL("jdbc:mysql://localhost:3306/charger"),USERNAME("root"),PASSWORD("Xworkzodc@123");
 	 private String value;
 
 	private ConnectionData(String value) {
@@ -15,4 +15,3 @@ public enum ConnectionData {
 	
 
 }
-
