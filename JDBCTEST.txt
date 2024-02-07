@@ -1,0 +1,145 @@
+JDBC:Jdbc is java Database connectivity which is used to connect between two application 
+    flow of JDBC  
+   we need to connect 2 application by using JDBC API,  jdbc is an interface 
+java gives set of interfaces and venders gives implementation for interface   
+
+2) Steps:1 First we need to load and register jar 
+         2 After connect 2 applictation 
+         3 after establisting coonection we need to create statement 
+         4 After creating statement execute query
+         5 Load the result or get the exception 
+         6 close the connection
+
+
+ 3) Statement : Statement is an interface it compails many times and execute many times 
+                Signature: Statement statment=connection.createStatement();
+   Preparedstatement:Preparedstatement is an interface it extends statement  it compiles only and execute many times
+               PreparedStatement ref=connection.prepareStatment(query);
+
+4)  import java.sql.Connection;
+    import java.sql.DriverManager;
+public class Question3{
+public static void main(String[] args){
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc","root","Xworkzodc@123");
+if(con!=null){
+		System.out.println("connection is ok");
+}else{
+		System.out.println("connection is not ok");
+  
+}
+
+}
+}
+
+5)  public class JdbcDelete{
+  public static void main(String[] args){
+String query="DELETE FROM jdbc_table where uname=?";
+   try(Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc","root","Xworkzodc@123");
+       PreparedStatement  preparedStatement=connection.prepareStatement(query);){
+            preparedStatement.setString(1,"Ramya");
+             int rowAffected=preparedStatement.executeUpdate();
+
+
+}catch(SQLException e){
+e.printStackTrace();
+}
+}
+}
+
+
+6) package jdbctest;
+
+package com.xworkz.jdbctest.constants;
+
+public enum ConnectionDtata {
+URL("jdbc:mysql://localhost:3306/jdbc_test"),USERNAME("root"),PASSWORD("Xworkzodc@123");
+	
+	private String value;
+
+	public String getValue() {
+		return value;
+	}
+
+	
+
+	private ConnectionDtata(String value) {
+		this.value = value;
+	}
+	
+}
+
+ 
+package jdbctest;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.cj.xdevapi.PreparableStatement;
+import com.xworkz.jdbctest.constants.ConnectionDtata;
+
+public class Jdbc {
+	public static void main(String[] args) throws Exception{
+	       String query="select product_name,price from product where price=?";
+	       try(Connection connection=DriverManager.getConnection(ConnectionDtata.URL.getValue(), ConnectionDtata.USERNAME.getValue(), ConnectionDtata.PASSWORD.getValue());
+	    		   PreparedStatement preparedStatement=connection.prepareStatement(query);){
+	    	   preparedStatement.setInt(1, 100); 
+	    	   ResultSet resultSet=preparedStatement.executeQuery();
+	    	   while(resultSet.next()) {
+	    		   System.out.println(resultSet.getString(1)+" "+resultSet.getInt(2));
+	    	   }
+//	    	   int resultSet=preparedStatement.executeUpdate();
+	    	   
+	    	   System.out.println("Inserted");
+	    	  
+	       }catch(SQLException e) {
+	    	   e.printStackTrace();
+	       }
+	}
+
+}
+
+
+package jdbctest;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.xworkz.jdbctest.constants.ConnectionDtata;
+
+public class Employee {
+	public static void main(String[] args) {
+		 // String query="INSERT INTO employee (name,salary,department)VALUES(?,?,?)";
+		
+		String query="UPADTE employee SET salary=? WHERE department=?";
+	       try(Connection connection=DriverManager.getConnection(ConnectionDtata.URL.getValue(), ConnectionDtata.USERNAME.getValue(), ConnectionDtata.PASSWORD.getValue());
+	    		   PreparedStatement preparedStatement=connection.prepareStatement(query);){
+	//    	   preparedStatement.setString(1, ); 
+	    	   preparedStatement.setInt(1, 50000);
+	    	   preparedStatement.setString(2, "IT");
+	    	   preparedStatement.executeUpdate();
+	    	   ResultSet resultSet=preparedStatement.executeQuery();
+	    	   while(resultSet.next()) {
+	    		   System.out.println(resultSet.getInt(1)+" "+resultSet.getString(2));
+	    	   }
+//	    	   
+	    	   System.out.println("Inserted");
+	       }catch(SQLException e) {
+	    	   e.printStackTrace();
+	       }
+	}
+
+}
+
+
+
+
+
+ 
+             
